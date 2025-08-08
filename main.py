@@ -10,13 +10,13 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_openai import AzureChatOpenAI
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # -------------------- FastAPI Setup --------------------
 app = FastAPI()
 API_KEY = "37fdc7e9f68374473f706d1a2bc85ad26e59b5f77cae8ebb3226d7dacf138598"
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# load_dotenv()
+OPENAI_API_KEY = "OPENAI_API_KEY"
 
 class QueryRequest(BaseModel):
     documents: str
@@ -212,3 +212,4 @@ def clear_cache(authorization: str = Header(None)):
     document_cache.clear()
     vector_store_cache.clear()
     return {"message": "Cache cleared successfully"}
+

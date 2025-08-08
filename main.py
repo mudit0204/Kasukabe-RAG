@@ -94,7 +94,8 @@ def download_and_process_document(doc_url: str) -> str:
         return document_cache[url_hash]
 
     print("📅 Downloading document...")
-    response = requests.get(doc_url, timeout=60)
+    response = requests.get(doc_url, timeout=600)
+    print("Doc downloaded, size:", len(response.content))
     if response.status_code != 200:
         raise HTTPException(status_code=400, detail="Failed to fetch document")
 
@@ -212,5 +213,6 @@ def clear_cache(authorization: str = Header(None)):
     document_cache.clear()
     vector_store_cache.clear()
     return {"message": "Cache cleared successfully"}
+
 
 
